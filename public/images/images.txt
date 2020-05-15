@@ -1,0 +1,3 @@
+// Archivo para que esté creada la carpeta images y no falle al ejecutar
+
+Habría que revisar que la carpeta de destino exista y si no existe crearla antes de redimensionar la imagen
