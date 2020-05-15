@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var multer = require('multer');
-var upload = multer({dest: 'public/tempDir/'});
+var upload = multer({dest: 'public/images/tempDir/'});
 
 
 var im = require('imagemagick');
