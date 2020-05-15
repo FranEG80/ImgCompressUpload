@@ -9,19 +9,18 @@ var im = require('imagemagick');
 compressImage = async (req, res, next) => {
   var file = req.file.path
   const fs = require('fs');
-  const b = (err, stdout, stderr) => {
+  await im.resize({
+    srcPath: file,
+    dstPath: 'public/images/' + req.file.filename + '.jpg',
+    width:   720
+    }, (err, stdout, stderr) => {
       if (err) throw err;
       var stats = fs.statSync('public/images/' + req.file.filename + '.jpg');
       req.body.newSize= stats.size;
       req.body.newName= 'public/images/' + req.file.filename + '.jpg';
       // Aqui al no dar error ya tienes que borrar el archivo subido en el tempDir con fs....
       next();
-  }
-  await im.resize({
-    srcPath: file,
-    dstPath: 'public/images/' + req.file.filename + '.jpg',
-    width:   720
-    }, b);  
+  });  
 }
 
 
