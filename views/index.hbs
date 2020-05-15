@@ -1,0 +1,33 @@
+<h1>{{title}}</h1>
+</hr>
+{{#if post}}
+  <h2>oldName: {{oldName}}</h2>
+  <h3>oldSize: {{oldSize}} Mb </h3>
+  <hr/>
+
+  <h2>newName: {{newName}}</h2>
+  <h3>newSize: {{newSize}} Mb</h3>
+
+{{/if}}
+{{#unless post}}
+<p>Subida de archivo de prueba</p>
+  <form action="/" method="POST" enctype="multipart/form-data">
+
+    <div class="form-group">
+      <label for="exampleFormControlFile1">Example file input</label>
+      <input type="file" class="form-control-file" id="exampleFormControlFile1" name='photo'>
+      <p id='size'></p>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+{{/unless}}
+
+<script>
+  var file = document.getElementById('exampleFormControlFile1');
+  var size = document.getElementById('size');
+
+  file.addEventListener('change', (e)=>{
+    console.log(e.target.files[0].size)
+    return size.innerHTML = 'Size File:  ' + (e.target.files[0].size / 1024 /1024).toFixed(2) + ' Mb'; 
+    })
+</script>
